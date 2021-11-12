@@ -13,33 +13,11 @@ import  tensorflow as tf
 from  bbox1 import  draw_boxes, bboxes_info
 from  utils3 import  get_yolo_boxes, makedirs
 
-output_path = '/Users/soumyaranjanmohanty/PycharmProjects/FalskDemo/output'
-
-
-configPath = 'config.json'
-with open(configPath) as configFile:
-    config = json.load(configFile)
-#print('Config file:-', config)
-
-###############################
-#   Set some parameter
-###############################
-
-net_h, net_w = 416, 416  # a multiple of 32, the smaller the faster
-obj_thresh, nms_thresh = 0.5, 0.45
-
-###############################
-#   Load the model
-###############################
-os.environ['CUDA_VISIBLE_DEVICES'] = config['train']['gpus']
-infer_model = load_model(config['train']['saved_weights_name'])
-print("infer_model", infer_model)
 
 
 app = Flask(__name__, static_url_path='')
 
-#port = int(os.getenv('PORT', 9000))
-#port = int(os.getenv('process.env.OPENSHIFT_NODEJS_PORT', 9000))
+
 port = int(os.getenv('process.env.PORT', 9000))
 host = int(os.getenv('process.env.IP'))
 
